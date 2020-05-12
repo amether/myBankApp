@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Button
+        android:id="@+id/toSiteButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="132dp"
+        android:text="Перейти на сайт"
+        app:layout_constraintEnd_toStartOf="@+id/toMapButton"
+        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constAdressTextView" />
+
+    <Button
+        android:id="@+id/toMapButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:text="Открыть на карте"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toSiteButton" />
+
+    <ImageView
+        android:id="@+id/bankIconImageView"
+        android:layout_width="370dp"
+        android:layout_height="186dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <TextView
+        android:id="@+id/bankNameTextView"
+        android:layout_width="307dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="50dp"
+        android:text="НАЗВАНИЕ"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bankIconImageView" />
+
+    <TextView
+        android:id="@+id/constLicenseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Лицензия №"
+        app:layout_constraintStart_toStartOf="@+id/bankNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/bankNameTextView" />
+
+    <TextView
+        android:id="@+id/constOgrnTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="ОГРН"
+        app:layout_constraintStart_toStartOf="@+id/constLicenseTextView"
+        app:layout_constraintTop_toBottomOf="@+id/constLicenseTextView" />
+
+    <TextView
+        android:id="@+id/variableLicenseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/constLicenseTextView"
+        app:layout_constraintTop_toTopOf="@+id/constLicenseTextView" />
+
+    <TextView
+        android:id="@+id/variableOgrnTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/variableLicenseTextView"
+        app:layout_constraintTop_toTopOf="@+id/constOgrnTextView" />
+
+    <TextView
+        android:id="@+id/constAdressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Адрес"
+        app:layout_constraintStart_toStartOf="@+id/constOgrnTextView"
+        app:layout_constraintTop_toBottomOf="@+id/constOgrnTextView" />
+
+    <TextView
+        android:id="@+id/variableAdressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:maxLines="3"
+        android:singleLine="false"
+        app:layout_constraintStart_toStartOf="@+id/variableOgrnTextView"
+        app:layout_constraintTop_toTopOf="@+id/constAdressTextView"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
