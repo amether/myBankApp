@@ -4,296 +4,310 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/city_edittext"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:hint="Город"
-        android:inputType="text" />
-
-    <RadioGroup
-        android:id="@+id/person_radiogroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:scrollbarStyle="insideInset">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/personal_radiobtn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+            <EditText
+                android:id="@+id/city_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Город"
+                android:inputType="text" />
+
+            <RadioGroup
+                android:id="@+id/person_radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/personal_radiobtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:text="Для частных лиц" />
+
+                    <RadioButton
+                        android:id="@+id/legal_radiobtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:text="Для юр.лиц" />
+
+                </LinearLayout>
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/credit_card_radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/creditCard_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Наличие кредитных карт" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/creditCard_Y"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/creditCard_N"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="No" />
+                </LinearLayout>
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/debit_card_radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/debitCard_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Наличие дебетовых карт" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/debitCard_Y"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/debitCard_N"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="No" />
+                </LinearLayout>
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/credit_cash_radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/creditCash_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Наличие кредита наличными" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/creditCash_Y"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/creditCash_N"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="No" />
+                </LinearLayout>
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/mortgage_radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/mortgage_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Наличие ипотечных займов" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/mortgage_Y"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/mortgage_N"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="No" />
+                </LinearLayout>
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/deposit_radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/deposit_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Наличие депозитных вкладов" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/deposit_Y"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/deposit_N"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="No" />
+                </LinearLayout>
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/investments_radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/investments_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Наличие инвестиций" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/investments_Y"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/investments_N"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="No" />
+                </LinearLayout>
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/insurance_radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/insurance_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Наличие страховых услуг" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/insurance_Y"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/insurance_N"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="No" />
+                </LinearLayout>
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/foreign_radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/forForeign_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Обслуживание иностранных граждан" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/forForeign_Y"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/forForeign_N"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="No" />
+                </LinearLayout>
+            </RadioGroup>
+            <Button
+                android:id="@+id/acceptFilter_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:text="Для частных лиц" />
-
-            <RadioButton
-                android:id="@+id/legal_radiobtn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:text="Для юр.лиц" />
+                android:text="Применить" />
         </LinearLayout>
-    </RadioGroup>
+    </ScrollView>
 
-    <RadioGroup
-        android:id="@+id/credit_card_radiogroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/creditCard_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Наличие кредитных карт" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/creditCard_Y"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Yes"/>
-
-            <RadioButton
-                android:id="@+id/creditCard_N"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="No"/>
-        </LinearLayout>
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/debit_card_radiogroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/debitCard_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Наличие дебетовых карт" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/debitCard_Y"
-                android:text="Yes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <RadioButton
-                android:id="@+id/debitCard_N"
-                android:text="No"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/credit_cash_radiogroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/creditCash_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Наличие кредита наличными" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/creditCash_Y"
-                android:text="Yes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <RadioButton
-                android:id="@+id/creditCash_N"
-                android:text="No"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/mortgage_radiogroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/mortgage_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Наличие ипотечных займов" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/mortgage_Y"
-                android:text="Yes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <RadioButton
-                android:id="@+id/mortgage_N"
-                android:text="No"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/deposit_radiogroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/deposit_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Наличие депозитных вкладов" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/deposit_Y"
-                android:text="Yes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <RadioButton
-                android:id="@+id/deposit_N"
-                android:text="No"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/investments_radiogroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/investments_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Наличие инвестиций" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/investments_Y"
-                android:text="Yes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <RadioButton
-                android:id="@+id/investments_N"
-                android:text="No"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/insurance_radiogroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/insurance_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Наличие страховых услуг" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/insurance_Y"
-                android:text="Yes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <RadioButton
-                android:id="@+id/insurance_N"
-                android:text="No"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/foreign_radiogroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/forForeign_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Обслуживание иностранных граждан" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/forForeign_Y"
-                android:text="Yes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <RadioButton
-                android:id="@+id/forForeign_N"
-                android:text="No"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/acceptFilter_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Применить" />
 
 
 </LinearLayout>
