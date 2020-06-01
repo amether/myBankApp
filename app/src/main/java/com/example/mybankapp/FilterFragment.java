@@ -29,7 +29,6 @@ import static com.example.mybankapp.Constants.PARAM_forPrivatePerson;
 import static com.example.mybankapp.Constants.PARAM_insurance;
 import static com.example.mybankapp.Constants.PARAM_investments;
 import static com.example.mybankapp.Constants.PARAM_mortgage;
-import static java.lang.String.valueOf;
 
 public class FilterFragment extends Fragment {
 

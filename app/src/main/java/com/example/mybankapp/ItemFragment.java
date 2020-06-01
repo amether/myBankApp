@@ -24,6 +24,8 @@ import static com.example.mybankapp.Constants.PARAM_BUNDLE_MAP;
 import static com.example.mybankapp.Constants.PARAM_BUNDLE_NAME;
 import static com.example.mybankapp.Constants.PARAM_BUNDLE_OGRN;
 import static com.example.mybankapp.Constants.PARAM_BUNDLE_SITE;
+import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE;
+import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_REQUEST_FRAGMENT;
 
 public class ItemFragment extends Fragment {
     private ImageView bankIconImageView;
@@ -33,6 +35,7 @@ public class ItemFragment extends Fragment {
     private TextView varBankAdressTextView;
     private Button toSiteButton;
     private Button toMapButton;
+    private Button addRequest;
 
     private int imgPath;
     private String bankSite;
@@ -56,6 +59,7 @@ public class ItemFragment extends Fragment {
         toSiteButton = view.findViewById(R.id.toSiteButton);
         toMapButton = view.findViewById(R.id.toMapButton);
         bankIconImageView = view.findViewById(R.id.bankIconImageView);
+        addRequest = view.findViewById(R.id.add_request);
 
 
         Bundle args = getArguments();
@@ -64,7 +68,7 @@ public class ItemFragment extends Fragment {
         }
         if (args != null && args.containsKey(PARAM_BUNDLE_NAME) && args.containsKey(PARAM_BUNDLE_OGRN) && args.containsKey(PARAM_BUNDLE_IMG)
                 && args.containsKey(PARAM_BUNDLE_LICENSE) && args.containsKey(PARAM_BUNDLE_ADRESS) && args.containsKey(PARAM_BUNDLE_SITE) &&
-                args.containsKey(PARAM_BUNDLE_MAP)){
+                args.containsKey(PARAM_BUNDLE_MAP)) {
             bankNameTextView.setText(args.getString(PARAM_BUNDLE_NAME));
             varBankOgrnTextView.setText(args.getString(PARAM_BUNDLE_OGRN));
             varBankLicenseTextView.setText(args.getString(PARAM_BUNDLE_LICENSE));
@@ -78,6 +82,7 @@ public class ItemFragment extends Fragment {
 
         toSiteButton.setOnClickListener(buttonAcceptOnClickListener);
         toMapButton.setOnClickListener(buttonAcceptOnClickListener);
+        addRequest.setOnClickListener(buttonAcceptOnClickListener);
 
     }
 
@@ -85,18 +90,26 @@ public class ItemFragment extends Fragment {
         @Override
         public void onClick(View v) {
             Button b = (Button) v;
-            switch (b.getId()){
-                case R.id.toSiteButton:{
+            switch (b.getId()) {
+                case R.id.toSiteButton: {
                     Uri webpage = Uri.parse(bankSite);
                     Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
                     startActivity(webIntent);
                 }
                 break;
-                case R.id.toMapButton:{
+                case R.id.toMapButton: {
                     String bankLocation = bankMap + city;
                     Uri location = Uri.parse(bankLocation);
                     Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
                     startActivity(mapIntent);
+                }
+                break;
+                case R.id.add_request: {
+                    Intent intent = new Intent("myDumbBroadcast");
+                    intent.putExtra(PARAM_SWITCH_TYPE, PARAM_SWITCH_TYPE_REQUEST_FRAGMENT);
+                    intent.putExtra("bank name", bankNameTextView.getText().toString());
+                    if (getActivity() != null)
+                        getActivity().sendBroadcast(intent);
                 }
                 break;
             }

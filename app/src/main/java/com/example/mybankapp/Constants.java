@@ -18,6 +18,8 @@ public class Constants {
     public final static int PARAM_DEFAULT = 0;
     public final static int PARAM_SWITCH_TYPE_FILTER_FRAGMENT = 1;
     public final static int PARAM_SWITCH_TYPE_ITEM_FRAGMENT = 2;
+    public final static int PARAM_SWITCH_TYPE_REQUEST_FRAGMENT = 3;
+    public final static int PARAM_SWITCH_TYPE_REQUEST_ADDED = 4;
     public final static String PARAM_BUNDLE_NAME = "bank name";
     public final static String PARAM_BUNDLE_IMG = "bank image path";
     public final static String PARAM_BUNDLE_LICENSE = "bank license";
@@ -26,4 +28,5 @@ public class Constants {
     public final static String PARAM_BUNDLE_SITE = "bank site";
     public final static String PARAM_BUNDLE_MAP = "bank location";
     public final static String PARAM_BUNDLE_CITY = "bank city";
+
 }

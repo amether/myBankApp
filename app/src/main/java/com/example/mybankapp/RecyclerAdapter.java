@@ -15,13 +15,11 @@ import java.util.ArrayList;
 
 import static com.example.mybankapp.Constants.PARAM_BUNDLE_NAME;
 import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE;
-import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_FILTER_FRAGMENT;
 import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_ITEM_FRAGMENT;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private ArrayList<RecyclerItem> itemList;
-    private TextView txtTitle2;
     private static Context context;
 
     public RecyclerAdapter(java.util.ArrayList<RecyclerItem> itemList, Context mContext) {
@@ -32,7 +30,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bank_item_layout, parent, false);
         return new ViewHolder(view);
     }
 
@@ -40,6 +38,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder itemView, int position) {
         RecyclerItem itemLists = itemList.get(position);
         itemView.txtTitle.setText(itemLists.getTitle());
+        itemView.imageView.setImageResource(itemLists.getImage());
     }
 
     @Override
@@ -50,11 +49,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtTitle;
-//        public ImageView imageView;
+        public ImageView imageView;
 
         ViewHolder(@NonNull final View itemView) {
             super(itemView);
             txtTitle = itemView.findViewById(R.id.txtTitle);
+            imageView = itemView.findViewById(R.id.imageView);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +66,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                     context.sendBroadcast(intent);
                 }
             });
-//            imageView = itemView.findViewById(R.id.imageView);
+
         }
     }
 }

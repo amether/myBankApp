@@ -20,6 +20,7 @@ import static java.lang.String.valueOf;
 public class ListFragment extends Fragment {
     private ArrayList<RecyclerItem> recyclerItems = new ArrayList<>();
     private ArrayList<String> bankNames = new ArrayList<>();
+    private ArrayList<Integer> bankImages = new ArrayList<>();
     private boolean filterChanged;
 
     @Override
@@ -58,6 +59,7 @@ public class ListFragment extends Fragment {
             recyclerItems.clear();
             if (args.containsKey("bankItems")) {
                 bankNames = args.getStringArrayList("bankItems");
+                bankImages = args.getIntegerArrayList("bankImages");
                 itemsAdd();
             }
         }
@@ -65,7 +67,7 @@ public class ListFragment extends Fragment {
 
     private void itemsAdd(){
         for (int i = 0; i < bankNames.size(); i++) {
-            recyclerItems.add(new RecyclerItem(bankNames.get(i)));
+            recyclerItems.add(new RecyclerItem(bankNames.get(i),bankImages.get(i)));
         }
     }
 

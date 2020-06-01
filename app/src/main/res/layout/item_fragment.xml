@@ -41,10 +41,12 @@
         android:layout_width="307dp"
         android:layout_height="52dp"
         android:layout_marginTop="50dp"
-        android:text="НАЗВАНИЕ"
+        android:textAlignment="center"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bankIconImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/bankIconImageView"
+        tools:text="НАЗВАНИЕ" />
 
     <TextView
         android:id="@+id/constLicenseTextView"
@@ -99,5 +101,15 @@
         android:singleLine="false"
         app:layout_constraintStart_toStartOf="@+id/variableOgrnTextView"
         app:layout_constraintTop_toTopOf="@+id/constAdressTextView"/>
+
+    <Button
+        android:id="@+id/add_request"
+        android:layout_width="273dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="136dp"
+        android:text="Создать заявку на кредит"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

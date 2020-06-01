@@ -6,9 +6,9 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Recycler"
+        android:id="@+id/recycler_requests"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/bank_item_layout"/>
+        tools:listitem="@layout/request_item_layout"/>
 
 </LinearLayout>

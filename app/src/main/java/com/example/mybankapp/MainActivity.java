@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +32,8 @@ import static com.example.mybankapp.Constants.PARAM_FILTER_CHANGED;
 import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE;
 import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_FILTER_FRAGMENT;
 import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_ITEM_FRAGMENT;
+import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_REQUEST_ADDED;
+import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_REQUEST_FRAGMENT;
 import static com.example.mybankapp.Constants.PARAM_city;
 import static com.example.mybankapp.Constants.PARAM_city_status;
 import static com.example.mybankapp.Constants.PARAM_creditCard;
@@ -49,9 +52,12 @@ public class MainActivity extends AppCompatActivity {
     FilterFragment filterFragment;
     ListFragment listFragment;
     ItemFragment itemFragment;
+    RequestFragment requestFragment;
+    AddRequestFragment addRequestFragment;
     ArrayList<BankClass> bankClass;
     Button listButton;
     Button filterButton;
+    Button requestButton;
     BroadcastReceiver broadcastReceiver;
 
     int debitCard;
@@ -75,21 +81,27 @@ public class MainActivity extends AppCompatActivity {
     String bankSite;
     String bankMap;
     String bankLicense;
+    int requestCounter;
+    boolean requestFragmentCalled;
+    String chosenBankName;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.main_toolbar);
+        toolbar = findViewById(R.id.main_toolbar);
 
-        listButton = (Button) findViewById(R.id.btn_list);
-        filterButton = (Button) findViewById(R.id.btn_filter);
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        listButton = findViewById(R.id.btn_list);
+        filterButton = findViewById(R.id.btn_filter);
+        requestButton = findViewById(R.id.btn_requests);
+        setupToolbar(toolbar);
 
         filterFragment = new FilterFragment();
         listFragment = new ListFragment();
         itemFragment = new ItemFragment();
+        requestFragment = new RequestFragment();
+        addRequestFragment = new AddRequestFragment();
         fragmentAdd(filterFragment);
 
         listButton.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +117,15 @@ public class MainActivity extends AppCompatActivity {
                 fragmentReplace(filterFragment);
             }
         });
+        requestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestFragmentCalled = true;
+                fragmentReplace(requestFragment);
+            }
+        });
         bankClass = new ArrayList<BankClass>();
+        requestCounter = 0;
         initBank(bankClass);
         startBroadcast();
 
@@ -123,6 +143,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fragmentReplace(Fragment fragment) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frame, fragment);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    private void fragmentReplace(Fragment fragment, String bankName) {
+        Bundle args = new Bundle();
+        args.putString("bank_name", bankName);
+        fragment.setArguments(args);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frame, fragment);
         ft.addToBackStack(null);
@@ -158,9 +188,24 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
     }
 
-    private void fragmentReplace(Fragment fragment, ArrayList<String> bankItem, boolean filterChanged) {
+    private void fragmentReplace(Fragment fragment, ArrayList<String> bankItems, ArrayList<Integer> bankImage, boolean filterChanged) {
         Bundle args = new Bundle();
-        args.putStringArrayList("bankItems", bankItem);
+        args.putStringArrayList("bankItems", bankItems);
+        args.putIntegerArrayList("bankImages", bankImage);
+        args.putBoolean("filterChanged", filterChanged);
+        fragment.setArguments(args);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frame, fragment);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    private void fragmentReplace(Fragment fragment, String bankname, int requestCounter, int moneycount, int time, boolean filterChanged) {
+        Bundle args = new Bundle();
+        args.putString("bank name", bankname);
+        args.putInt("requestCounter", requestCounter);
+        args.putInt("moneycount", moneycount);
+        args.putInt("time", time);
         args.putBoolean("filterChanged", filterChanged);
         fragment.setArguments(args);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -325,7 +370,11 @@ public class MainActivity extends AppCompatActivity {
                             cityStatus = intent.getIntExtra(PARAM_city_status, PARAM_DEFAULT);
                             searchBank();
                         } else {
-                            fragmentReplace(listFragment, filterChanged);
+                            if (!requestFragmentCalled) {
+                                fragmentReplace(listFragment, filterChanged);
+                            } else {
+                                requestFragmentCalled = false;
+                            }
                         }
                         filterChanged = false;
                     }
@@ -345,6 +394,20 @@ public class MainActivity extends AppCompatActivity {
                         fragmentReplace(itemFragment, bankAdress, bankImage, bankName, bankLicense, bankOgrn, bankSite, bankMap);
                     }
                     break;
+                    case PARAM_SWITCH_TYPE_REQUEST_FRAGMENT: {
+                        //Open request creation fragment
+                        chosenBankName = intent.getStringExtra("bank name");
+                        fragmentReplace(addRequestFragment, chosenBankName);
+                    }
+                    break;
+                    case PARAM_SWITCH_TYPE_REQUEST_ADDED: {
+                        int time = intent.getIntExtra("time", 1);
+                        requestCounter++;
+                        int moneyCount = Integer.parseInt(intent.getStringExtra("credit count"));
+                        fragmentReplace(requestFragment, chosenBankName, requestCounter, moneyCount, time, true);
+                    }
+                    break;
+
                     default:
                         break;
                 }
@@ -357,6 +420,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void searchBank() {
         ArrayList<String> bankNames = new ArrayList<>();
+        ArrayList<Integer> bankImages = new ArrayList<>();
         boolean ifFind = false;
         boolean forPerson = false;
         boolean forDebitCard = false;
@@ -527,14 +591,27 @@ public class MainActivity extends AppCompatActivity {
                     forPerson && forMortgage) {
                 ifFind = true;
                 bankNames.add(bankClass.get(i).getName());
+                bankImages.add(bankClass.get(i).getImage());
             }
 
         }
 
         if (ifFind) {
-            fragmentReplace(listFragment, bankNames, filterChanged);
+            fragmentReplace(listFragment, bankNames, bankImages, filterChanged);
         } else {
             Toast.makeText(this, "Совпадений по фильтрам не найдено", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    protected void setupToolbar(Toolbar toolbar) {
+        toolbar.setTitle("My bank aggregator");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().popBackStack();
+            }
+        });
     }
 }
