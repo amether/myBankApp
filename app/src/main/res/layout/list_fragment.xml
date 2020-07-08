@@ -9,6 +9,6 @@
         android:id="@+id/Recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/bank_item_layout"/>
+        tools:listitem="@layout/bank_item"/>
 
 </LinearLayout>

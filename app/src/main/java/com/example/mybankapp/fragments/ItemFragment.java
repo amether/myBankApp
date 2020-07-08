@@ -1,7 +1,6 @@
-package com.example.mybankapp;
+package com.example.mybankapp.fragments;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,33 +10,26 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_ADRESS;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_CITY;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_IMG;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_LICENSE;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_MAP;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_NAME;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_OGRN;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_SITE;
-import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE;
-import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_REQUEST_FRAGMENT;
+import com.example.mybankapp.R;
+
+import static com.example.mybankapp.constants.Constants.PARAM_BROADCAST_NAME;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_ADRESS;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_CITY;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_IMG;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_LICENSE;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_MAP;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_NAME;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_OGRN;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_SITE;
+import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE;
+import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE_REQUEST_FRAGMENT;
 
 public class ItemFragment extends Fragment {
-    private ImageView bankIconImageView;
     private TextView bankNameTextView;
-    private TextView varBankLicenseTextView;
-    private TextView varBankOgrnTextView;
-    private TextView varBankAdressTextView;
-    private Button toSiteButton;
-    private Button toMapButton;
-    private Button addRequest;
-
-    private int imgPath;
     private String bankSite;
     private String bankMap;
     private String city;
@@ -51,15 +43,14 @@ public class ItemFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        bankIconImageView = view.findViewById(R.id.bankIconImageView);
+        ImageView bankIconImageView = view.findViewById(R.id.bankIconImageView);
         bankNameTextView = view.findViewById(R.id.bankNameTextView);
-        varBankLicenseTextView = view.findViewById(R.id.variableLicenseTextView);
-        varBankOgrnTextView = view.findViewById(R.id.variableOgrnTextView);
-        varBankAdressTextView = view.findViewById(R.id.variableAdressTextView);
-        toSiteButton = view.findViewById(R.id.toSiteButton);
-        toMapButton = view.findViewById(R.id.toMapButton);
-        bankIconImageView = view.findViewById(R.id.bankIconImageView);
-        addRequest = view.findViewById(R.id.add_request);
+        TextView varBankLicenseTextView = view.findViewById(R.id.variableLicenseTextView);
+        TextView varBankOgrnTextView = view.findViewById(R.id.variableOgrnTextView);
+        TextView varBankAdressTextView = view.findViewById(R.id.variableAdressTextView);
+        Button toSiteButton = view.findViewById(R.id.toSiteButton);
+        Button toMapButton = view.findViewById(R.id.toMapButton);
+        Button addRequest = view.findViewById(R.id.add_request);
 
 
         Bundle args = getArguments();
@@ -73,7 +64,7 @@ public class ItemFragment extends Fragment {
             varBankOgrnTextView.setText(args.getString(PARAM_BUNDLE_OGRN));
             varBankLicenseTextView.setText(args.getString(PARAM_BUNDLE_LICENSE));
             varBankAdressTextView.setText(args.getString(PARAM_BUNDLE_ADRESS));
-            imgPath = args.getInt(PARAM_BUNDLE_IMG);
+            int imgPath = args.getInt(PARAM_BUNDLE_IMG);
             bankMap = args.getString(PARAM_BUNDLE_MAP);
             bankSite = args.getString(PARAM_BUNDLE_SITE);
             city = args.getString(PARAM_BUNDLE_CITY);
@@ -105,9 +96,9 @@ public class ItemFragment extends Fragment {
                 }
                 break;
                 case R.id.add_request: {
-                    Intent intent = new Intent("myDumbBroadcast");
+                    Intent intent = new Intent(PARAM_BROADCAST_NAME);
                     intent.putExtra(PARAM_SWITCH_TYPE, PARAM_SWITCH_TYPE_REQUEST_FRAGMENT);
-                    intent.putExtra("bank name", bankNameTextView.getText().toString());
+                    intent.putExtra(PARAM_BUNDLE_NAME, bankNameTextView.getText().toString());
                     if (getActivity() != null)
                         getActivity().sendBroadcast(intent);
                 }

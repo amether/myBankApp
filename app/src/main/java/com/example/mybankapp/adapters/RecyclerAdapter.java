@@ -1,4 +1,4 @@
-package com.example.mybankapp;
+package com.example.mybankapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,11 +11,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mybankapp.R;
+import com.example.mybankapp.classes.RecyclerItem;
+
 import java.util.ArrayList;
 
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_NAME;
-import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE;
-import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_ITEM_FRAGMENT;
+import static com.example.mybankapp.constants.Constants.PARAM_BROADCAST_NAME;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_NAME;
+import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE;
+import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE_ITEM_FRAGMENT;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
@@ -30,7 +34,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bank_item_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bank_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -60,7 +64,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent("myDumbBroadcast");
+                    Intent intent = new Intent(PARAM_BROADCAST_NAME);
                     intent.putExtra(PARAM_SWITCH_TYPE, PARAM_SWITCH_TYPE_ITEM_FRAGMENT);
                     intent.putExtra(PARAM_BUNDLE_NAME, txtTitle.getText().toString());
                     context.sendBroadcast(intent);

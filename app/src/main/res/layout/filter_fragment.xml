@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:hint="Город"
+                android:hint="@string/filter_fragment_enter_city_editText"
                 android:inputType="text" />
 
             <RadioGroup
@@ -38,7 +38,7 @@
                         android:layout_height="match_parent"
                         android:layout_margin="15dp"
                         android:layout_weight="1"
-                        android:text="Для частных лиц" />
+                        android:text="@string/filter_fragment_person_answer_editText" />
 
                     <RadioButton
                         android:id="@+id/legal_radiobtn"
@@ -46,7 +46,7 @@
                         android:layout_height="match_parent"
                         android:layout_margin="15dp"
                         android:layout_weight="1"
-                        android:text="Для юр.лиц" />
+                        android:text="@string/filter_fragment_legal_answer_editText" />
 
                 </LinearLayout>
             </RadioGroup>
@@ -60,7 +60,7 @@
                     android:id="@+id/creditCard_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Наличие кредитных карт" />
+                    android:text="@string/filter_fragment_credit_card_group" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -71,14 +71,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Yes" />
+                        android:text="@string/filter_fragment_answer_yes_editText" />
 
                     <RadioButton
                         android:id="@+id/creditCard_N"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="No" />
+                        android:text="@string/filter_fragment_answer_no_editText" />
                 </LinearLayout>
             </RadioGroup>
 
@@ -91,7 +91,7 @@
                     android:id="@+id/debitCard_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Наличие дебетовых карт" />
+                    android:text="@string/filter_fragment_debet_card_group" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -102,14 +102,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Yes" />
+                        android:text="@string/filter_fragment_answer_yes_editText" />
 
                     <RadioButton
                         android:id="@+id/debitCard_N"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="No" />
+                        android:text="@string/filter_fragment_answer_no_editText" />
                 </LinearLayout>
             </RadioGroup>
 
@@ -122,7 +122,7 @@
                     android:id="@+id/creditCash_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Наличие кредита наличными" />
+                    android:text="@string/filter_fragment_credit_cash_group" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -133,14 +133,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Yes" />
+                        android:text="@string/filter_fragment_answer_yes_editText" />
 
                     <RadioButton
                         android:id="@+id/creditCash_N"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="No" />
+                        android:text="@string/filter_fragment_answer_no_editText" />
                 </LinearLayout>
             </RadioGroup>
 
@@ -153,7 +153,7 @@
                     android:id="@+id/mortgage_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Наличие ипотечных займов" />
+                    android:text="@string/filter_fragment_mortgage_group" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -164,14 +164,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Yes" />
+                        android:text="@string/filter_fragment_answer_yes_editText" />
 
                     <RadioButton
                         android:id="@+id/mortgage_N"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="No" />
+                        android:text="@string/filter_fragment_answer_no_editText" />
                 </LinearLayout>
             </RadioGroup>
 
@@ -184,7 +184,7 @@
                     android:id="@+id/deposit_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Наличие депозитных вкладов" />
+                    android:text="@string/filter_fragment_deposit_group" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -195,14 +195,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Yes" />
+                        android:text="@string/filter_fragment_answer_yes_editText" />
 
                     <RadioButton
                         android:id="@+id/deposit_N"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="No" />
+                        android:text="@string/filter_fragment_answer_no_editText" />
                 </LinearLayout>
             </RadioGroup>
 
@@ -215,7 +215,7 @@
                     android:id="@+id/investments_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Наличие инвестиций" />
+                    android:text="@string/filter_fragment_investments_group" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -226,14 +226,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Yes" />
+                        android:text="@string/filter_fragment_answer_yes_editText" />
 
                     <RadioButton
                         android:id="@+id/investments_N"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="No" />
+                        android:text="@string/filter_fragment_answer_no_editText" />
                 </LinearLayout>
             </RadioGroup>
 
@@ -246,7 +246,7 @@
                     android:id="@+id/insurance_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Наличие страховых услуг" />
+                    android:text="@string/filter_fragment_insurance_group" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -257,14 +257,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Yes" />
+                        android:text="@string/filter_fragment_answer_yes_editText" />
 
                     <RadioButton
                         android:id="@+id/insurance_N"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="No" />
+                        android:text="@string/filter_fragment_answer_no_editText" />
                 </LinearLayout>
             </RadioGroup>
 
@@ -277,7 +277,7 @@
                     android:id="@+id/forForeign_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Обслуживание иностранных граждан" />
+                    android:text="@string/filter_fragment_foreigner_group" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -288,14 +288,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Yes" />
+                        android:text="@string/filter_fragment_answer_yes_editText" />
 
                     <RadioButton
                         android:id="@+id/forForeign_N"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="No" />
+                        android:text="@string/filter_fragment_answer_no_editText" />
                 </LinearLayout>
             </RadioGroup>
             <Button
@@ -303,7 +303,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Применить" />
+                android:text="@string/filter_fragment_accept_button" />
         </LinearLayout>
     </ScrollView>
 

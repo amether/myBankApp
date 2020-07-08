@@ -1,14 +1,14 @@
-package com.example.mybankapp;
+package com.example.mybankapp.classes;
 
 
 public class RecyclerRequestItem {
 
-    String bankName;
-    Integer requestCount;
-    int percent;
-    int moneyCount;
-    String requestState;
-    int time;
+    private String bankName;
+    private Integer requestCount;
+    private int percent;
+    private int moneyCount;
+    private String requestState;
+    private int time;
 
     public RecyclerRequestItem(String bankName, Integer requestCount, int percent, int moneyCount, String requestState, int time) {
         this.bankName = bankName;

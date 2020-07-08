@@ -1,21 +1,22 @@
-package com.example.mybankapp;
+package com.example.mybankapp.adapters;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mybankapp.R;
+import com.example.mybankapp.classes.RecyclerRequestItem;
 
 import java.util.ArrayList;
 
 import static java.lang.String.valueOf;
 
-public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecyclerAdapter.ViewHolder>{
+public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecyclerAdapter.ViewHolder> {
 
     private ArrayList<RecyclerRequestItem> itemList;
     private static Context context;
@@ -28,7 +29,7 @@ public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecycler
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.request_item_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.request_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -38,12 +39,12 @@ public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecycler
         itemView.bankName.setText(itemLists.getBankName());
         String mCount = String.format("Сумма: %d", itemLists.getMoneyCount());
         itemView.moneyCount.setText(mCount);
-        String bPercent = String.format("Процент: %d%%",itemLists.getPercent());
+        String bPercent = String.format("Процент: %d%%", itemLists.getPercent());
         itemView.bankPercent.setText(bPercent);
-        itemView.requestNumber.setText("Заявка №"+ valueOf(itemLists.getRequestCount()));
+        itemView.requestNumber.setText("Заявка №" + valueOf(itemLists.getRequestCount()));
         itemView.requestState.setText("Статус: " + itemLists.getRequestState());
-        double temp = (((itemLists.getMoneyCount()/100)*itemLists.getPercent())+itemLists.getMoneyCount())/itemLists.getTime();
-        itemView.monthlyPayment.setText("Ежемесячный платеж: " + temp );
+        double temp = (((itemLists.getMoneyCount() / 100) * itemLists.getPercent()) + itemLists.getMoneyCount()) / itemLists.getTime();
+        itemView.monthlyPayment.setText("Ежемесячный платеж: " + temp);
     }
 
     @Override

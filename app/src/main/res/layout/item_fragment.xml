@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="132dp"
-        android:text="Перейти на сайт"
+        android:text="@string/item_fragment_to_site_button"
         app:layout_constraintEnd_toStartOf="@+id/toMapButton"
         app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
-        android:text="Открыть на карте"
+        android:text="@string/item_fragment_to_map_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toSiteButton" />
 
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Лицензия №"
+        android:text="@string/item_fragment_license_textView"
         app:layout_constraintStart_toStartOf="@+id/bankNameTextView"
         app:layout_constraintTop_toBottomOf="@+id/bankNameTextView" />
 
@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="ОГРН"
+        android:text="@string/item_fragment_ogrn_textView"
         app:layout_constraintStart_toStartOf="@+id/constLicenseTextView"
         app:layout_constraintTop_toBottomOf="@+id/constLicenseTextView" />
 
@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="TextView"
+        tools:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/constLicenseTextView"
         app:layout_constraintTop_toTopOf="@+id/constLicenseTextView" />
 
@@ -79,7 +79,7 @@
         android:id="@+id/variableOgrnTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        tools:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/variableLicenseTextView"
         app:layout_constraintTop_toTopOf="@+id/constOgrnTextView" />
 
@@ -88,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Адрес"
+        android:text="@string/item_fragment_adress_textView"
         app:layout_constraintStart_toStartOf="@+id/constOgrnTextView"
         app:layout_constraintTop_toBottomOf="@+id/constOgrnTextView" />
 
@@ -96,7 +96,7 @@
         android:id="@+id/variableAdressTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        tools:text="TextView"
         android:maxLines="3"
         android:singleLine="false"
         app:layout_constraintStart_toStartOf="@+id/variableOgrnTextView"
@@ -107,7 +107,7 @@
         android:layout_width="273dp"
         android:layout_height="46dp"
         android:layout_marginBottom="136dp"
-        android:text="Создать заявку на кредит"
+        android:text="@string/item_fragment_add_request_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

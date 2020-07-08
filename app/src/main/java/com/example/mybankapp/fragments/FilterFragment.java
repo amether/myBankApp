@@ -1,4 +1,4 @@
-package com.example.mybankapp;
+package com.example.mybankapp.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,27 +8,28 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import static com.example.mybankapp.Constants.PARAM_FILTER_CHANGED;
-import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE;
-import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_FILTER_FRAGMENT;
-import static com.example.mybankapp.Constants.PARAM_city;
-import static com.example.mybankapp.Constants.PARAM_city_status;
-import static com.example.mybankapp.Constants.PARAM_creditCard;
-import static com.example.mybankapp.Constants.PARAM_creditCash;
-import static com.example.mybankapp.Constants.PARAM_debitCard;
-import static com.example.mybankapp.Constants.PARAM_deposit;
-import static com.example.mybankapp.Constants.PARAM_forForeigners;
-import static com.example.mybankapp.Constants.PARAM_forLegal;
-import static com.example.mybankapp.Constants.PARAM_forPrivatePerson;
-import static com.example.mybankapp.Constants.PARAM_insurance;
-import static com.example.mybankapp.Constants.PARAM_investments;
-import static com.example.mybankapp.Constants.PARAM_mortgage;
+import com.example.mybankapp.R;
+
+import static com.example.mybankapp.constants.Constants.PARAM_BROADCAST_NAME;
+import static com.example.mybankapp.constants.Constants.PARAM_FILTER_CHANGED;
+import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE;
+import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE_FILTER_FRAGMENT;
+import static com.example.mybankapp.constants.Constants.PARAM_city;
+import static com.example.mybankapp.constants.Constants.PARAM_city_status;
+import static com.example.mybankapp.constants.Constants.PARAM_creditCard;
+import static com.example.mybankapp.constants.Constants.PARAM_creditCash;
+import static com.example.mybankapp.constants.Constants.PARAM_debitCard;
+import static com.example.mybankapp.constants.Constants.PARAM_deposit;
+import static com.example.mybankapp.constants.Constants.PARAM_forForeigners;
+import static com.example.mybankapp.constants.Constants.PARAM_forPrivatePerson;
+import static com.example.mybankapp.constants.Constants.PARAM_insurance;
+import static com.example.mybankapp.constants.Constants.PARAM_investments;
+import static com.example.mybankapp.constants.Constants.PARAM_mortgage;
 
 public class FilterFragment extends Fragment {
 
@@ -74,7 +75,7 @@ public class FilterFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.filter_fragment_layout, container, false);
+        return inflater.inflate(R.layout.filter_fragment, container, false);
     }
 
     @Override
@@ -337,7 +338,7 @@ public class FilterFragment extends Fragment {
 
     @Override
     public void onPause() {
-        Intent intent = new Intent("myDumbBroadcast");
+        Intent intent = new Intent(PARAM_BROADCAST_NAME);
         intent.putExtra(PARAM_SWITCH_TYPE, PARAM_SWITCH_TYPE_FILTER_FRAGMENT);
         if (acceptButtonClicked) {
             intent.putExtra(PARAM_debitCard, sendDebitCardStatus);

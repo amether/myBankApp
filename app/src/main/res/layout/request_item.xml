@@ -1,127 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-
-    <TextView
-        android:id="@+id/percent_item"
-        android:layout_width="200dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="24dp"
-        android:text="Процентная ставка"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bank_name" />
-
-    <TextView
-        android:id="@+id/credit"
-        android:layout_width="0dp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Сумма кредита"
-        app:layout_constraintEnd_toEndOf="@+id/percent_item"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/percent_item" />
+        android:layout_margin="4dp"
+        android:elevation="4dp">
 
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Срок"
-        app:layout_constraintEnd_toEndOf="@+id/credit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credit" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="4dp">
 
-    <TextView
-        android:id="@+id/monthly_payment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Ежемесячный платеж"
-        app:layout_constraintEnd_toEndOf="@+id/time"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time" />
+            <TextView
+                android:id="@+id/bank_name_txt"
+                android:layout_width="178dp"
+                android:layout_height="28dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textAppearance="?android:textAppearanceLarge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Банк" />
 
-    <TextView
-        android:id="@+id/status_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Статус: "
-        app:layout_constraintEnd_toEndOf="@+id/monthly_payment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/monthly_payment" />
+            <TextView
+                android:id="@+id/money_count_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                tools:text="Сумма:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bank_name_txt" />
 
-    <TextView
-        android:id="@+id/percent_value"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="28%"
-        app:layout_constraintBaseline_toBaselineOf="@+id/percent_item"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/percent_item" />
+            <TextView
+                android:id="@+id/state_request_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                tools:text="Статус:"
+                app:layout_constraintStart_toStartOf="@+id/request_num_txt"
+                app:layout_constraintTop_toBottomOf="@+id/bank_name_txt" />
 
-    <TextView
-        android:id="@+id/credit_count"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="100000"
-        app:layout_constraintBaseline_toBaselineOf="@+id/credit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/credit" />
+            <TextView
+                android:id="@+id/request_num_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                tools:text="Заявка №"
+                app:layout_constraintBottom_toBottomOf="@+id/bank_name_txt"
+                app:layout_constraintStart_toEndOf="@+id/bank_name_txt"
+                app:layout_constraintTop_toTopOf="@+id/bank_name_txt"
+                app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/time_count"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="12 месяцев"
-        app:layout_constraintBaseline_toBaselineOf="@+id/time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/time" />
+            <TextView
+                android:id="@+id/percent_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="20dp"
+                tools:text="Процент:"
+                app:layout_constraintStart_toStartOf="@+id/state_request_txt"
+                app:layout_constraintTop_toBottomOf="@+id/money_count_txt" />
 
-    <TextView
-        android:id="@+id/monthly_payment_count"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="11345 руб"
-        app:layout_constraintBaseline_toBaselineOf="@+id/monthly_payment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/monthly_payment" />
+            <TextView
+                android:id="@+id/monthly_payment_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                tools:text="Ежемесячный платеж:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/money_count_txt" />
 
-    <TextView
-        android:id="@+id/request_statement"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Одобрено!"
-        app:layout_constraintBaseline_toBaselineOf="@+id/status_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/status_title" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/bank_name"
-        android:layout_width="63dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

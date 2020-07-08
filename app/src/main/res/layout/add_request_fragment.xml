@@ -19,31 +19,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Создать заявку"
+                android:text="@string/add_request_fragment_create_request_button"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/taked_photo_view"
+                app:layout_constraintTop_toBottomOf="@+id/photo_description_static"
                 app:layout_constraintVertical_bias="1.0" />
 
             <EditText
                 android:id="@+id/enter_time_editText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:ems="10"
-                android:hint="Введите срок в месяцах"
+                android:hint="@string/add_request_fragment_enter_time_editText"
                 android:inputType="number"
                 app:layout_constraintStart_toStartOf="@+id/enter_count_editText"
                 app:layout_constraintTop_toBottomOf="@+id/enter_count_editText" />
 
             <EditText
                 android:id="@+id/enter_count_editText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:hint="Введите сумму кредита"
+                android:hint="@string/add_request_fragment_enter_count_editText"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.08"
@@ -55,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Заявка на получение кредита"
+                android:text="@string/add_request_fragment_header_textView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,63 +62,64 @@
 
             <EditText
                 android:id="@+id/enter_first_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:ems="10"
-                android:hint="Ваше имя"
+                android:hint="@string/add_request_fragment_enter_first_name_editText"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/enter_time_editText"
                 app:layout_constraintTop_toBottomOf="@+id/enter_time_editText" />
 
             <EditText
                 android:id="@+id/enter_last_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:ems="10"
-                android:hint="Ваша фамилия"
+                android:hint="@string/add_request_fragment_enter_second_name_editText"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/enter_first_name"
                 app:layout_constraintTop_toBottomOf="@+id/enter_first_name" />
 
             <EditText
                 android:id="@+id/enter_dad_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:ems="10"
-                android:hint="Ваше очество"
+                android:hint="@string/add_request_fragment_enter_dad_name_editText"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/enter_last_name"
                 app:layout_constraintTop_toBottomOf="@+id/enter_last_name" />
 
             <EditText
                 android:id="@+id/enter_passport_number"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:hint="Серия и номер паспорта через пробел"
-                android:inputType="textPersonName"
+                android:hint="@string/add_request_fragment_enter_passport_number_editText"
                 app:layout_constraintStart_toStartOf="@+id/enter_dad_name"
                 app:layout_constraintTop_toBottomOf="@+id/nationality_switch" />
 
             <Switch
+                android:paddingStart="4dp"
                 android:id="@+id/nationality_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Гражданство РФ"
+                android:text="@string/add_request_fragment_nationality_switch"
                 app:layout_constraintStart_toStartOf="@+id/enter_dad_name"
-                app:layout_constraintTop_toBottomOf="@+id/enter_dad_name" />
+                app:layout_constraintTop_toBottomOf="@+id/enter_dad_name"
+                tools:ignore="RtlSymmetry" />
 
             <CheckBox
                 android:id="@+id/personal_data_handle_accept_checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                android:text="Согласие на обработку персональных данных"
+                android:text="@string/add_request_fragment_personal_data_handler_checkBox"
                 app:layout_constraintStart_toStartOf="@+id/enter_passport_number"
                 app:layout_constraintTop_toBottomOf="@+id/enter_passport_number" />
 
@@ -128,30 +128,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Сделать фото"
-                app:layout_constraintBottom_toBottomOf="@+id/footer_static"
-                app:layout_constraintStart_toEndOf="@+id/footer_static"
-                app:layout_constraintTop_toTopOf="@+id/footer_static"
+                android:text="@string/add_request_fragment_create_photo_button"
+                app:layout_constraintBottom_toBottomOf="@+id/photo_description_static"
+                app:layout_constraintStart_toEndOf="@+id/photo_description_static"
+                app:layout_constraintTop_toTopOf="@+id/photo_description_static"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/footer_static"
+                android:id="@+id/photo_description_static"
                 android:layout_width="241dp"
                 android:layout_height="56dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Для оформления заявки сделайте селфи с первым разворотом паспорта"
+                android:text="@string/add_request_fragment_photo_description_textView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/personal_data_handle_accept_checkBox" />
 
             <ImageView
+                android:visibility="invisible"
                 android:id="@+id/taked_photo_view"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/footer_static" />
+                app:layout_constraintTop_toBottomOf="@+id/photo_description_static" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.mybankapp;
+package com.example.mybankapp.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,26 +11,31 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mybankapp.R;
+import com.example.mybankapp.classes.RecyclerRequestItem;
+import com.example.mybankapp.adapters.RequestRecyclerAdapter;
+
 import java.util.ArrayList;
+
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_NAME;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_TO_REQUEST_FRAGMENT_MONEY_COUNT;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_TO_REQUEST_FRAGMENT_REQUEST_COUNTER;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_TO_REQUEST_FRAGMENT_TIME;
+import static com.example.mybankapp.constants.Constants.PARAM_FILTER_CHANGED;
 
 public class RequestFragment extends Fragment {
     private ArrayList<RecyclerRequestItem> recyclerItems = new ArrayList<>();
-    private ArrayList<RecyclerRequestItem> tempRecyclerItems = new ArrayList<>();
-    boolean filterChanged;
-    String bankName;
-    int requestCounter;
-    int moneyCount;
-    int percent;
-    int time;
+    private String bankName;
+    private int requestCounter;
+    private int moneyCount;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            bankName = savedInstanceState.getString("bank name");
-            requestCounter = savedInstanceState.getInt("requestCounter");
-            moneyCount = savedInstanceState.getInt("moneycount");
-            percent = savedInstanceState.getInt("percent");
+            bankName = savedInstanceState.getString(PARAM_BUNDLE_NAME);
+            requestCounter = savedInstanceState.getInt(PARAM_BUNDLE_TO_REQUEST_FRAGMENT_REQUEST_COUNTER);
+            moneyCount = savedInstanceState.getInt(PARAM_BUNDLE_TO_REQUEST_FRAGMENT_MONEY_COUNT);
         }
         super.onCreate(savedInstanceState);
     }
@@ -51,15 +56,16 @@ public class RequestFragment extends Fragment {
 
         Bundle args = getArguments();
 
-        if (args != null && args.containsKey("filterChanged")) {
-            filterChanged = args.getBoolean("filterChanged");
+        if (args != null && args.containsKey(PARAM_FILTER_CHANGED)) {
+            boolean filterChanged = args.getBoolean(PARAM_FILTER_CHANGED);
             if (filterChanged) {
-                bankName = args.getString("bank name");
-                requestCounter = args.getInt("requestCounter");
-                moneyCount = args.getInt("moneycount");
-                time = args.getInt("time");
-                percent = (int) (Math.random()*10+5);
-                RecyclerRequestItem newItem = new RecyclerRequestItem(bankName, requestCounter, percent, moneyCount, "В обработке", time);
+                bankName = args.getString(PARAM_BUNDLE_NAME);
+                requestCounter = args.getInt(PARAM_BUNDLE_TO_REQUEST_FRAGMENT_REQUEST_COUNTER);
+                moneyCount = args.getInt(PARAM_BUNDLE_TO_REQUEST_FRAGMENT_MONEY_COUNT);
+                int time = args.getInt(PARAM_BUNDLE_TO_REQUEST_FRAGMENT_TIME);
+                int percent = (int) (Math.random() * 10 + 5);
+                String requestState = "В обработке";
+                RecyclerRequestItem newItem = new RecyclerRequestItem(bankName, requestCounter, percent, moneyCount, requestState, time);
                 boolean isHere = false;
                 if (!recyclerItems.isEmpty()) {
                     for (int i = 0; i < recyclerItems.size(); i++) {

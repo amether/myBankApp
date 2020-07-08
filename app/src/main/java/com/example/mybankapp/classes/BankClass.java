@@ -1,27 +1,24 @@
-package com.example.mybankapp;
+package com.example.mybankapp.classes;
 
 public class BankClass {
-    boolean debitCard;
-    boolean creditCard;
-    boolean creditCash;
-    boolean forForeignClients;
-    boolean mortgage;
-    boolean deposit;
-    boolean forPrivatePerson;
-    boolean insurance;
-    String name;
-    boolean investments;
+    private boolean debitCard;
+    private boolean creditCard;
+    private boolean creditCash;
+    private boolean forForeignClients;
+    private boolean mortgage;
+    private boolean deposit;
+    private boolean forPrivatePerson;
+    private boolean insurance;
+    private String name;
+    private boolean investments;
 
-    String adress;
-    int image;
-    String license;
-    String ogrn;
-    String site;
-    String map;
+    private String adress;
+    private int image;
+    private String license;
+    private String ogrn;
+    private String site;
+    private String map;
 
-    boolean legalCredits;
-    boolean legalAcquiring;
-    boolean salaryAccount;
 
 
     public BankClass(boolean debitCard, boolean creditCard, boolean creditCash, boolean forForeignClients, boolean mortgage, boolean deposit,
@@ -38,9 +35,6 @@ public class BankClass {
         this.insurance = insurance;
         this.name = name;
         this.investments = investments;
-        this.legalCredits = legalCredits;
-        this.legalAcquiring = legalAcquiring;
-        this.salaryAccount = salaryAccount;
 
         this.adress = adress;
         this.image = image;

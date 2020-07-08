@@ -1,100 +1,115 @@
-package com.example.mybankapp;
+package com.example.mybankapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.mybankapp.fragments.AddRequestFragment;
+import com.example.mybankapp.classes.BankClass;
+import com.example.mybankapp.fragments.FilterFragment;
+import com.example.mybankapp.fragments.ItemFragment;
+import com.example.mybankapp.fragments.ListFragment;
+import com.example.mybankapp.R;
+import com.example.mybankapp.fragments.RequestFragment;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_ADRESS;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_CITY;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_IMG;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_LICENSE;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_MAP;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_NAME;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_OGRN;
-import static com.example.mybankapp.Constants.PARAM_BUNDLE_SITE;
-import static com.example.mybankapp.Constants.PARAM_DEFAULT;
-import static com.example.mybankapp.Constants.PARAM_FILTER_CHANGED;
-import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE;
-import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_FILTER_FRAGMENT;
-import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_ITEM_FRAGMENT;
-import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_REQUEST_ADDED;
-import static com.example.mybankapp.Constants.PARAM_SWITCH_TYPE_REQUEST_FRAGMENT;
-import static com.example.mybankapp.Constants.PARAM_city;
-import static com.example.mybankapp.Constants.PARAM_city_status;
-import static com.example.mybankapp.Constants.PARAM_creditCard;
-import static com.example.mybankapp.Constants.PARAM_creditCash;
-import static com.example.mybankapp.Constants.PARAM_debitCard;
-import static com.example.mybankapp.Constants.PARAM_deposit;
-import static com.example.mybankapp.Constants.PARAM_forForeigners;
-import static com.example.mybankapp.Constants.PARAM_forLegal;
-import static com.example.mybankapp.Constants.PARAM_forPrivatePerson;
-import static com.example.mybankapp.Constants.PARAM_insurance;
-import static com.example.mybankapp.Constants.PARAM_investments;
-import static com.example.mybankapp.Constants.PARAM_mortgage;
-import static java.lang.String.valueOf;
+import static com.example.mybankapp.constants.Constants.PARAM_BROADCAST_NAME;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_ADRESS;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_CITY;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_IMG;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_LICENSE;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_MAP;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_NAME;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_OGRN;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_SITE;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_TO_LIST_FRAGMENT_BANK_IMAGES;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_TO_LIST_FRAGMENT_BANK_ITEMS;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_TO_REQUEST_FRAGMENT_MONEY_COUNT;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_TO_REQUEST_FRAGMENT_REQUEST_COUNTER;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_TO_REQUEST_FRAGMENT_TIME;
+import static com.example.mybankapp.constants.Constants.PARAM_DEFAULT;
+import static com.example.mybankapp.constants.Constants.PARAM_FILTER_CHANGED;
+import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE;
+import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE_FILTER_FRAGMENT;
+import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE_ITEM_FRAGMENT;
+import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE_REQUEST_ADDED;
+import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE_REQUEST_FRAGMENT;
+import static com.example.mybankapp.constants.Constants.PARAM_city;
+import static com.example.mybankapp.constants.Constants.PARAM_creditCard;
+import static com.example.mybankapp.constants.Constants.PARAM_creditCash;
+import static com.example.mybankapp.constants.Constants.PARAM_debitCard;
+import static com.example.mybankapp.constants.Constants.PARAM_deposit;
+import static com.example.mybankapp.constants.Constants.PARAM_forForeigners;
+import static com.example.mybankapp.constants.Constants.PARAM_forPrivatePerson;
+import static com.example.mybankapp.constants.Constants.PARAM_insurance;
+import static com.example.mybankapp.constants.Constants.PARAM_investments;
+import static com.example.mybankapp.constants.Constants.PARAM_mortgage;
 
 public class MainActivity extends AppCompatActivity {
-    FilterFragment filterFragment;
-    ListFragment listFragment;
-    ItemFragment itemFragment;
-    RequestFragment requestFragment;
-    AddRequestFragment addRequestFragment;
-    ArrayList<BankClass> bankClass;
-    Button listButton;
-    Button filterButton;
-    Button requestButton;
-    BroadcastReceiver broadcastReceiver;
+    private FilterFragment filterFragment;
+    private ListFragment listFragment;
+    private ItemFragment itemFragment;
+    private RequestFragment requestFragment;
+    private AddRequestFragment addRequestFragment;
+    private ArrayList<BankClass> bankClass;
 
-    int debitCard;
-    int creditCard;
-    int creditCash;
-    int forForeigners;
-    int mortgage;
-    int deposit;
-    int insurance;
-    int investments;
-    int forPrivatePerson;
-    boolean filterChanged;
-    String city;
-    int cityStatus;
-    int switchType;
+    private boolean filterChanged;
+    private boolean requestFragmentCalled;
 
-    String bankName;
-    int bankImage;
-    String bankOgrn;
-    String bankAdress;
-    String bankSite;
-    String bankMap;
-    String bankLicense;
-    int requestCounter;
-    boolean requestFragmentCalled;
-    String chosenBankName;
-    Toolbar toolbar;
+    private int debitCard;
+    private int creditCard;
+    private int creditCash;
+    private int forForeigners;
+    private int mortgage;
+    private int deposit;
+    private int insurance;
+    private int investments;
+    private int forPrivatePerson;
+    private int switchType;
+    private int time;
+    private int moneyCount;
+    private int requestCounter;
+    private int bankImage;
+
+    private String bankName;
+    private String bankOgrn;
+    private String bankAdress;
+    private String bankSite;
+    private String bankMap;
+    private String bankLicense;
+    private String chosenBankName;
+    private String city;
+
+    private ArrayList<String> bankNames = new ArrayList<>();
+    private ArrayList<Integer> bankImages = new ArrayList<>();
+
+    private final String PARAM_LIST_FRAGMENT = "ListFragment";
+    private final String PARAM_FILTER_FRAGMENT = "FilterFragment";
+    private final String PARAM_REQUEST_FRAGMENT = "RequestFragment";
+    private final String PARAM_ITEM_FRAGMENT = "ItemFragment";
+    private final String PARAM_ADD_REQUEST_FRAGMENT = "AddRequestFragment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.main_toolbar);
+        Toolbar toolbar = findViewById(R.id.main_toolbar);
 
-        listButton = findViewById(R.id.btn_list);
-        filterButton = findViewById(R.id.btn_filter);
-        requestButton = findViewById(R.id.btn_requests);
+        Button listButton = findViewById(R.id.btn_list);
+        Button filterButton = findViewById(R.id.btn_filter);
+        Button requestButton = findViewById(R.id.btn_requests);
         setupToolbar(toolbar);
 
         filterFragment = new FilterFragment();
@@ -107,33 +122,28 @@ public class MainActivity extends AppCompatActivity {
         listButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentReplace(listFragment);
+                fragmentReplace(listFragment, PARAM_LIST_FRAGMENT);
             }
         });
 
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentReplace(filterFragment);
+                fragmentReplace(filterFragment, PARAM_FILTER_FRAGMENT);
             }
         });
         requestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 requestFragmentCalled = true;
-                fragmentReplace(requestFragment);
+                fragmentReplace(requestFragment, PARAM_REQUEST_FRAGMENT);
             }
         });
-        bankClass = new ArrayList<BankClass>();
+        bankClass = new ArrayList<>();
         requestCounter = 0;
         initBank(bankClass);
         startBroadcast();
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
     }
 
     private void fragmentAdd(Fragment fragment) {
@@ -142,77 +152,120 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
     }
 
-    private void fragmentReplace(Fragment fragment) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame, fragment);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
-
-    private void fragmentReplace(Fragment fragment, String bankName) {
+    private void fragmentReplace(Fragment fragment, String fragmentClass) {
         Bundle args = new Bundle();
-        args.putString("bank_name", bankName);
-        fragment.setArguments(args);
+        switch (fragmentClass) {
+            case PARAM_ADD_REQUEST_FRAGMENT: {
+                args.putString(PARAM_BUNDLE_NAME, bankName);
+                fragment.setArguments(args);
+            }
+            break;
+            case PARAM_FILTER_FRAGMENT:
+                break;
+            case PARAM_ITEM_FRAGMENT: {
+                args.putString(PARAM_BUNDLE_ADRESS, bankAdress);
+                args.putInt(PARAM_BUNDLE_IMG, bankImage);
+                args.putString(PARAM_BUNDLE_NAME, bankName);
+                args.putString(PARAM_BUNDLE_LICENSE, bankLicense);
+                args.putString(PARAM_BUNDLE_OGRN, bankOgrn);
+                args.putString(PARAM_BUNDLE_SITE, bankSite);
+                args.putString(PARAM_BUNDLE_MAP, bankMap);
+                args.putString(PARAM_BUNDLE_CITY, city);
+                fragment.setArguments(args);
+            }
+            break;
+            case PARAM_LIST_FRAGMENT: {
+                args.putStringArrayList(PARAM_BUNDLE_TO_LIST_FRAGMENT_BANK_ITEMS, bankNames);
+                args.putIntegerArrayList(PARAM_BUNDLE_TO_LIST_FRAGMENT_BANK_IMAGES, bankImages);
+                args.putBoolean(PARAM_FILTER_CHANGED, filterChanged);
+                fragment.setArguments(args);
+            }
+            break;
+            case PARAM_REQUEST_FRAGMENT: {
+                args.putString(PARAM_BUNDLE_NAME, chosenBankName);
+                args.putInt(PARAM_BUNDLE_TO_REQUEST_FRAGMENT_REQUEST_COUNTER, requestCounter);
+                args.putInt(PARAM_BUNDLE_TO_REQUEST_FRAGMENT_MONEY_COUNT, moneyCount);
+                args.putInt(PARAM_BUNDLE_TO_REQUEST_FRAGMENT_TIME, time);
+                args.putBoolean(PARAM_FILTER_CHANGED, filterChanged);
+                fragment.setArguments(args);
+            }
+            break;
+        }
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frame, fragment);
         ft.addToBackStack(null);
         ft.commit();
     }
 
-    private void fragmentReplace(Fragment fragment, String adres, int imgPath, String name, String license, String ogrn, String web,
-                                 String mapData) {
-        Bundle args = new Bundle();
-        args.putString(PARAM_BUNDLE_ADRESS, adres);
-        args.putInt(PARAM_BUNDLE_IMG, imgPath);
-        args.putString(PARAM_BUNDLE_NAME, name);
-        args.putString(PARAM_BUNDLE_LICENSE, license);
-        args.putString(PARAM_BUNDLE_OGRN, ogrn);
-        args.putString(PARAM_BUNDLE_SITE, web);
-        args.putString(PARAM_BUNDLE_MAP, mapData);
-        args.putString(PARAM_BUNDLE_CITY, city);
-        fragment.setArguments(args);
-
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame, fragment);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
-
-    private void fragmentReplace(Fragment fragment, boolean filterChanged) {
-        Bundle args = new Bundle();
-        args.putBoolean("filterChanged", filterChanged);
-        fragment.setArguments(args);
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame, fragment);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
-
-    private void fragmentReplace(Fragment fragment, ArrayList<String> bankItems, ArrayList<Integer> bankImage, boolean filterChanged) {
-        Bundle args = new Bundle();
-        args.putStringArrayList("bankItems", bankItems);
-        args.putIntegerArrayList("bankImages", bankImage);
-        args.putBoolean("filterChanged", filterChanged);
-        fragment.setArguments(args);
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame, fragment);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
-
-    private void fragmentReplace(Fragment fragment, String bankname, int requestCounter, int moneycount, int time, boolean filterChanged) {
-        Bundle args = new Bundle();
-        args.putString("bank name", bankname);
-        args.putInt("requestCounter", requestCounter);
-        args.putInt("moneycount", moneycount);
-        args.putInt("time", time);
-        args.putBoolean("filterChanged", filterChanged);
-        fragment.setArguments(args);
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame, fragment);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
+//    private void fragmentReplace(Fragment fragment, String bankName) {
+//        // AddRequestFragment
+//        Bundle args = new Bundle();
+//        args.putString("bank_name", bankName);
+//        fragment.setArguments(args);
+//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        ft.replace(R.id.frame, fragment);
+//        ft.addToBackStack(null);
+//        ft.commit();
+//    }
+//
+//    private void fragmentReplace(Fragment fragment, String adres, int imgPath, String name, String license, String ogrn, String web,
+//                                 String mapData) {
+//        // Item Fragment
+//        Bundle args = new Bundle();
+//        args.putString(PARAM_BUNDLE_ADRESS, adres);
+//        args.putInt(PARAM_BUNDLE_IMG, imgPath);
+//        args.putString(PARAM_BUNDLE_NAME, name);
+//        args.putString(PARAM_BUNDLE_LICENSE, license);
+//        args.putString(PARAM_BUNDLE_OGRN, ogrn);
+//        args.putString(PARAM_BUNDLE_SITE, web);
+//        args.putString(PARAM_BUNDLE_MAP, mapData);
+//        args.putString(PARAM_BUNDLE_CITY, city);
+//        fragment.setArguments(args);
+//
+//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        ft.replace(R.id.frame, fragment);
+//        ft.addToBackStack(null);
+//        ft.commit();
+//    }
+//
+//    private void fragmentReplace(Fragment fragment, boolean filterChanged) {
+//        // List Fragment
+//        Bundle args = new Bundle();
+//        args.putBoolean("filterChanged", filterChanged);
+//        fragment.setArguments(args);
+//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        ft.replace(R.id.frame, fragment);
+//        ft.addToBackStack(null);
+//        ft.commit();
+//    }
+//
+//    private void fragmentReplace(Fragment fragment, ArrayList<String> bankItems, ArrayList<Integer> bankImage, boolean filterChanged) {
+//        // List Fragment
+//        Bundle args = new Bundle();
+//        args.putStringArrayList("bankItems", bankItems);
+//        args.putIntegerArrayList("bankImages", bankImage);
+//        args.putBoolean("filterChanged", filterChanged);
+//        fragment.setArguments(args);
+//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        ft.replace(R.id.frame, fragment);
+//        ft.addToBackStack(null);
+//        ft.commit();
+//    }
+//
+//    private void fragmentReplace(Fragment fragment, String bankname, int requestCounter, int moneycount, int time, boolean filterChanged) {
+//        // Request Fragment
+//        Bundle args = new Bundle();
+//        args.putString("bank name", bankname);
+//        args.putInt("requestCounter", requestCounter);
+//        args.putInt("moneycount", moneycount);
+//        args.putInt("time", time);
+//        args.putBoolean("filterChanged", filterChanged);
+//        fragment.setArguments(args);
+//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        ft.replace(R.id.frame, fragment);
+//        ft.addToBackStack(null);
+//        ft.commit();
+//    }
 
     private void initBank(ArrayList<BankClass> bankClass) {
 
@@ -349,7 +402,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startBroadcast() {
 
-        broadcastReceiver = new BroadcastReceiver() {
+        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 switchType = intent.getIntExtra(PARAM_SWITCH_TYPE, PARAM_DEFAULT);
@@ -367,11 +420,11 @@ public class MainActivity extends AppCompatActivity {
                             investments = intent.getIntExtra(PARAM_investments, PARAM_DEFAULT);
                             forPrivatePerson = intent.getIntExtra(PARAM_forPrivatePerson, PARAM_DEFAULT);
                             city = intent.getStringExtra(PARAM_city);
-                            cityStatus = intent.getIntExtra(PARAM_city_status, PARAM_DEFAULT);
+//                            cityStatus = intent.getIntExtra(PARAM_city_status, PARAM_DEFAULT);
                             searchBank();
                         } else {
                             if (!requestFragmentCalled) {
-                                fragmentReplace(listFragment, filterChanged);
+                                fragmentReplace(listFragment, PARAM_LIST_FRAGMENT);
                             } else {
                                 requestFragmentCalled = false;
                             }
@@ -391,20 +444,19 @@ public class MainActivity extends AppCompatActivity {
                                 bankSite = bankClass.get(i).getSite();
                             }
                         }
-                        fragmentReplace(itemFragment, bankAdress, bankImage, bankName, bankLicense, bankOgrn, bankSite, bankMap);
+                        fragmentReplace(itemFragment, PARAM_ITEM_FRAGMENT);
                     }
                     break;
                     case PARAM_SWITCH_TYPE_REQUEST_FRAGMENT: {
-                        //Open request creation fragment
-                        chosenBankName = intent.getStringExtra("bank name");
-                        fragmentReplace(addRequestFragment, chosenBankName);
+                        chosenBankName = intent.getStringExtra(PARAM_BUNDLE_NAME);
+                        fragmentReplace(addRequestFragment, PARAM_ADD_REQUEST_FRAGMENT);
                     }
                     break;
                     case PARAM_SWITCH_TYPE_REQUEST_ADDED: {
-                        int time = intent.getIntExtra("time", 1);
+                        time = intent.getIntExtra(PARAM_BUNDLE_TO_REQUEST_FRAGMENT_TIME, 1);
                         requestCounter++;
-                        int moneyCount = Integer.parseInt(intent.getStringExtra("credit count"));
-                        fragmentReplace(requestFragment, chosenBankName, requestCounter, moneyCount, time, true);
+                        moneyCount = Integer.parseInt(Objects.requireNonNull(intent.getStringExtra(PARAM_BUNDLE_TO_REQUEST_FRAGMENT_MONEY_COUNT)));
+                        fragmentReplace(requestFragment, PARAM_REQUEST_FRAGMENT);
                     }
                     break;
 
@@ -414,13 +466,12 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        IntentFilter intentFilter = new IntentFilter("myDumbBroadcast");
+        IntentFilter intentFilter = new IntentFilter(PARAM_BROADCAST_NAME);
         registerReceiver(broadcastReceiver, intentFilter);
     }
 
     private void searchBank() {
-        ArrayList<String> bankNames = new ArrayList<>();
-        ArrayList<Integer> bankImages = new ArrayList<>();
+
         boolean ifFind = false;
         boolean forPerson = false;
         boolean forDebitCard = false;
@@ -431,7 +482,7 @@ public class MainActivity extends AppCompatActivity {
         boolean forInsurance = false;
         boolean forInvestments = false;
         boolean forForeign = false;
-        boolean forCity = false;
+//        boolean forCity = false;
         for (int i = 0; i < bankClass.size(); i++) {
 
             switch (forPrivatePerson) {
@@ -597,14 +648,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (ifFind) {
-            fragmentReplace(listFragment, bankNames, bankImages, filterChanged);
+            fragmentReplace(listFragment, PARAM_LIST_FRAGMENT);
         } else {
-            Toast.makeText(this, "Совпадений по фильтрам не найдено", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.main_toast_filter_coincidence, Toast.LENGTH_SHORT).show();
         }
     }
 
     protected void setupToolbar(Toolbar toolbar) {
-        toolbar.setTitle("My bank aggregator");
+        toolbar.setTitle(R.string.main_toolbar_name);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

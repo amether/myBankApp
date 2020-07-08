@@ -35,21 +35,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Список"/>
+            android:text="@string/main_button_list"/>
 
         <Button
             android:id="@+id/btn_requests"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Мои заявки"/>
+            android:text="@string/main_button_requsts"/>
 
         <Button
             android:id="@+id/btn_filter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Фильтры"/>
+            android:text="@string/main_button_filter"/>
 
     </LinearLayout>
 

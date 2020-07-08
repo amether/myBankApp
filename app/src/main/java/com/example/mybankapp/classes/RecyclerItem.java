@@ -1,4 +1,4 @@
-package com.example.mybankapp;
+package com.example.mybankapp.classes;
 
 public class RecyclerItem {
 

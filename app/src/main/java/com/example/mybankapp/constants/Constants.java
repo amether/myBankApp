@@ -1,4 +1,4 @@
-package com.example.mybankapp;
+package com.example.mybankapp.constants;
 
 public class Constants {
     public final static String PARAM_debitCard = "debit card";
@@ -28,5 +28,11 @@ public class Constants {
     public final static String PARAM_BUNDLE_SITE = "bank site";
     public final static String PARAM_BUNDLE_MAP = "bank location";
     public final static String PARAM_BUNDLE_CITY = "bank city";
+    public final static String PARAM_BROADCAST_NAME = "myDumbBroadcast";
+    public final static String PARAM_BUNDLE_TO_REQUEST_FRAGMENT_REQUEST_COUNTER = "requestCounter";
+    public final static String PARAM_BUNDLE_TO_REQUEST_FRAGMENT_TIME = "time";
+    public final static String PARAM_BUNDLE_TO_REQUEST_FRAGMENT_MONEY_COUNT = "moneyCount";
+    public final static String PARAM_BUNDLE_TO_LIST_FRAGMENT_BANK_ITEMS = "bankItems";
+    public final static String PARAM_BUNDLE_TO_LIST_FRAGMENT_BANK_IMAGES = "bankImages";
 
 }
