@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mybankapp.R;
-import com.example.mybankapp.classes.RecyclerRequestItem;
-import com.example.mybankapp.adapters.RequestRecyclerAdapter;
+import com.example.mybankapp.models.RequestListRecyclerItem;
+import com.example.mybankapp.adapters.RequestListAdapter;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_TO_REQUEST_
 import static com.example.mybankapp.constants.Constants.PARAM_FILTER_CHANGED;
 
 public class RequestFragment extends Fragment {
-    private ArrayList<RecyclerRequestItem> recyclerItems = new ArrayList<>();
+    private ArrayList<RequestListRecyclerItem> recyclerItems = new ArrayList<>();
     private String bankName;
     private int requestCounter;
     private int moneyCount;
@@ -51,7 +51,7 @@ public class RequestFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_requests);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        RequestRecyclerAdapter adapter = new RequestRecyclerAdapter(recyclerItems, getContext());
+        RequestListAdapter adapter = new RequestListAdapter(recyclerItems, getContext());
         recyclerView.setAdapter(adapter);
 
         Bundle args = getArguments();
@@ -65,7 +65,7 @@ public class RequestFragment extends Fragment {
                 int time = args.getInt(PARAM_BUNDLE_TO_REQUEST_FRAGMENT_TIME);
                 int percent = (int) (Math.random() * 10 + 5);
                 String requestState = "В обработке";
-                RecyclerRequestItem newItem = new RecyclerRequestItem(bankName, requestCounter, percent, moneyCount, requestState, time);
+                RequestListRecyclerItem newItem = new RequestListRecyclerItem(bankName, requestCounter, percent, moneyCount, requestState, time);
                 boolean isHere = false;
                 if (!recyclerItems.isEmpty()) {
                     for (int i = 0; i < recyclerItems.size(); i++) {

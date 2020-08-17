@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,11 @@ import static android.app.Activity.RESULT_OK;
 import static com.example.mybankapp.constants.Constants.PARAM_BROADCAST_NAME;
 import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_NAME;
 import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_TO_REQUEST_FRAGMENT_MONEY_COUNT;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_TO_REQUEST_FRAGMENT_TIME;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_USER_FIRST_NAME;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_USER_PASSPORT_NUMBER;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_USER_SECOND_NAME;
+import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_USER_THIRD_NAME;
 import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE;
 import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE_REQUEST_ADDED;
 
@@ -79,19 +86,19 @@ public class AddRequestFragment extends Fragment {
         createRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!creditCount.getText().toString().equals("") && !timeCount.getText().toString().equals("") &&
-                        !firstName.getText().toString().equals("") && !secondName.getText().toString().equals("") &&
-                        !thirdName.getText().toString().equals("") && !serialPassport.getText().toString().equals("") &&
+                if (!isTextViewEmpty(creditCount) && !isTextViewEmpty(timeCount) &&
+                        !isTextViewEmpty(firstName) && !isTextViewEmpty(secondName) &&
+                        !isTextViewEmpty(thirdName) && !isTextViewEmpty(serialPassport) &&
                         personalHandleAccepted.isChecked() && btnClicked) {
                     Intent intent = new Intent(PARAM_BROADCAST_NAME);
                     intent.putExtra(PARAM_SWITCH_TYPE, PARAM_SWITCH_TYPE_REQUEST_ADDED);
                     intent.putExtra(PARAM_BUNDLE_NAME, chosenBankName);
                     intent.putExtra(PARAM_BUNDLE_TO_REQUEST_FRAGMENT_MONEY_COUNT, creditCount.getText().toString());
-                    intent.putExtra("time", Integer.parseInt(timeCount.getText().toString()));
-                    intent.putExtra("first name", firstName.getText().toString());
-                    intent.putExtra("second name", secondName.getText().toString());
-                    intent.putExtra("third name", thirdName.getText().toString());
-                    intent.putExtra("serial passport", serialPassport.getText().toString());
+                    intent.putExtra(PARAM_BUNDLE_TO_REQUEST_FRAGMENT_TIME, Integer.parseInt(timeCount.getText().toString()));
+                    intent.putExtra(PARAM_BUNDLE_USER_FIRST_NAME, firstName.getText().toString());
+                    intent.putExtra(PARAM_BUNDLE_USER_SECOND_NAME, secondName.getText().toString());
+                    intent.putExtra(PARAM_BUNDLE_USER_THIRD_NAME, thirdName.getText().toString());
+                    intent.putExtra(PARAM_BUNDLE_USER_PASSPORT_NUMBER, serialPassport.getText().toString());
                     if (getActivity() != null)
                         getActivity().sendBroadcast(intent);
                 } else {
@@ -126,5 +133,11 @@ public class AddRequestFragment extends Fragment {
             Bitmap thumbnailBitmap = (Bitmap) data.getExtras().get("data");
             takedPhotoImage.setImageBitmap(thumbnailBitmap);
         }
+    }
+
+    public boolean isTextViewEmpty(TextView textView){
+        boolean isEmpty;
+        isEmpty = TextUtils.isEmpty(textView.getText());
+        return isEmpty;
     }
 }

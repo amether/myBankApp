@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mybankapp.R;
-import com.example.mybankapp.adapters.RecyclerAdapter;
-import com.example.mybankapp.classes.RecyclerItem;
+import com.example.mybankapp.adapters.BankListAdapter;
+import com.example.mybankapp.models.BankListRecyclerItem;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ import static com.example.mybankapp.constants.Constants.PARAM_FILTER_CHANGED;
 
 
 public class ListFragment extends Fragment {
-    private ArrayList<RecyclerItem> recyclerItems = new ArrayList<>();
+    private ArrayList<BankListRecyclerItem> bankListRecyclerItems = new ArrayList<>();
     private ArrayList<String> bankNames = new ArrayList<>();
     private ArrayList<Integer> bankImages = new ArrayList<>();
 
@@ -46,7 +46,7 @@ public class ListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = view.findViewById(R.id.Recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        RecyclerAdapter adapter = new RecyclerAdapter(recyclerItems, getContext());
+        BankListAdapter adapter = new BankListAdapter(bankListRecyclerItems);
         recyclerView.setAdapter(adapter);
 
         boolean filterChanged = false;
@@ -60,7 +60,7 @@ public class ListFragment extends Fragment {
             filterChanged = args.getBoolean(PARAM_FILTER_CHANGED);
         }
         if (filterChanged) {
-            recyclerItems.clear();
+            bankListRecyclerItems.clear();
             if (args.containsKey(PARAM_BUNDLE_TO_LIST_FRAGMENT_BANK_ITEMS)) {
                 bankNames = args.getStringArrayList(PARAM_BUNDLE_TO_LIST_FRAGMENT_BANK_ITEMS);
                 bankImages = args.getIntegerArrayList(PARAM_BUNDLE_TO_LIST_FRAGMENT_BANK_IMAGES);
@@ -71,7 +71,7 @@ public class ListFragment extends Fragment {
 
     private void itemsAdd(){
         for (int i = 0; i < bankNames.size(); i++) {
-            recyclerItems.add(new RecyclerItem(bankNames.get(i),bankImages.get(i)));
+            bankListRecyclerItems.add(new BankListRecyclerItem(bankNames.get(i),bankImages.get(i)));
         }
     }
 

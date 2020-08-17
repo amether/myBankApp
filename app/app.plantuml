@@ -51,19 +51,19 @@ title __APP's Class Diagram__\n
   
 
   namespace com.example.mybankapp {
-    class com.example.mybankapp.adapters.RecyclerAdapter {
+    class com.example.mybankapp.adapters.BankListAdapter {
     }
   }
   
 
   namespace com.example.mybankapp {
-    class com.example.mybankapp.classes.RecyclerItem {
+    class com.example.mybankapp.classes.BankListRecyclerItem {
     }
   }
   
 
   namespace com.example.mybankapp {
-    class com.example.mybankapp.classes.RecyclerRequestItem {
+    class com.example.mybankapp.classes.RequestListRecyclerItem {
     }
   }
   
@@ -75,7 +75,7 @@ title __APP's Class Diagram__\n
   
 
   namespace com.example.mybankapp {
-    class com.example.mybankapp.adapters.RequestRecyclerAdapter {
+    class com.example.mybankapp.adapters.RequestListAdapter {
     }
   }
   
@@ -90,9 +90,9 @@ title __APP's Class Diagram__\n
   com.example.mybankapp.activities.MainActivity o-- com.example.mybankapp.fragments.ItemFragment : itemFragment
   com.example.mybankapp.activities.MainActivity o-- com.example.mybankapp.fragments.ListFragment : listFragment
   com.example.mybankapp.activities.MainActivity o-- com.example.mybankapp.fragments.RequestFragment : requestFragment
-  com.example.mybankapp.adapters.RecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.mybankapp.adapters.BankListAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
   com.example.mybankapp.fragments.RequestFragment -up-|> androidx.fragment.app.Fragment
-  com.example.mybankapp.adapters.RequestRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.mybankapp.adapters.RequestListAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
 
 
 right footer

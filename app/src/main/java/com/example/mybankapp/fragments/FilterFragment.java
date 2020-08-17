@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,17 +20,17 @@ import static com.example.mybankapp.constants.Constants.PARAM_BROADCAST_NAME;
 import static com.example.mybankapp.constants.Constants.PARAM_FILTER_CHANGED;
 import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE;
 import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE_FILTER_FRAGMENT;
-import static com.example.mybankapp.constants.Constants.PARAM_city;
-import static com.example.mybankapp.constants.Constants.PARAM_city_status;
-import static com.example.mybankapp.constants.Constants.PARAM_creditCard;
-import static com.example.mybankapp.constants.Constants.PARAM_creditCash;
-import static com.example.mybankapp.constants.Constants.PARAM_debitCard;
-import static com.example.mybankapp.constants.Constants.PARAM_deposit;
-import static com.example.mybankapp.constants.Constants.PARAM_forForeigners;
-import static com.example.mybankapp.constants.Constants.PARAM_forPrivatePerson;
-import static com.example.mybankapp.constants.Constants.PARAM_insurance;
-import static com.example.mybankapp.constants.Constants.PARAM_investments;
-import static com.example.mybankapp.constants.Constants.PARAM_mortgage;
+import static com.example.mybankapp.constants.Constants.PARAM_CITY;
+import static com.example.mybankapp.constants.Constants.PARAM_CITY_STATUS;
+import static com.example.mybankapp.constants.Constants.PARAM_CREDIT_CARD;
+import static com.example.mybankapp.constants.Constants.PARAM_CREDIT_CASH;
+import static com.example.mybankapp.constants.Constants.PARAM_DEBIT_CARD;
+import static com.example.mybankapp.constants.Constants.PARAM_DEPOSIT;
+import static com.example.mybankapp.constants.Constants.PARAM_FOR_FOREIGNERS;
+import static com.example.mybankapp.constants.Constants.PARAM_FOR_PRIVATE_PERSON;
+import static com.example.mybankapp.constants.Constants.PARAM_INSURANCE;
+import static com.example.mybankapp.constants.Constants.PARAM_INVESTMENTS;
+import static com.example.mybankapp.constants.Constants.PARAM_MORTGAGE;
 
 public class FilterFragment extends Fragment {
 
@@ -341,17 +342,18 @@ public class FilterFragment extends Fragment {
         Intent intent = new Intent(PARAM_BROADCAST_NAME);
         intent.putExtra(PARAM_SWITCH_TYPE, PARAM_SWITCH_TYPE_FILTER_FRAGMENT);
         if (acceptButtonClicked) {
-            intent.putExtra(PARAM_debitCard, sendDebitCardStatus);
-            intent.putExtra(PARAM_creditCard, sendCreditCardStatus);
-            intent.putExtra(PARAM_creditCash, sendCreditCashStatus);
-            intent.putExtra(PARAM_forForeigners, sendForeignStatus);
-            intent.putExtra(PARAM_mortgage, sendMortgageStatus);
-            intent.putExtra(PARAM_investments, sendInvestmentStatus);
-            intent.putExtra(PARAM_deposit, sendDepositStatus);
-            intent.putExtra(PARAM_insurance, sendInsuranceStatus);
-            intent.putExtra(PARAM_forPrivatePerson, sendPersonStatus);
-            intent.putExtra(PARAM_city_status, sendCityStatus);
-            intent.putExtra(PARAM_city, cityEdittext.getText().toString());
+            intent.putExtra(PARAM_DEBIT_CARD, sendDebitCardStatus);
+            intent.putExtra(PARAM_CREDIT_CARD, sendCreditCardStatus);
+            intent.putExtra(PARAM_CREDIT_CASH, sendCreditCashStatus);
+            intent.putExtra(PARAM_FOR_FOREIGNERS, sendForeignStatus);
+            intent.putExtra(PARAM_MORTGAGE, sendMortgageStatus);
+            intent.putExtra(PARAM_INVESTMENTS, sendInvestmentStatus);
+            intent.putExtra(PARAM_DEPOSIT, sendDepositStatus);
+            intent.putExtra(PARAM_INSURANCE, sendInsuranceStatus);
+            intent.putExtra(PARAM_FOR_PRIVATE_PERSON, sendPersonStatus);
+            intent.putExtra(PARAM_CITY_STATUS, sendCityStatus);
+            intent.putExtra(PARAM_CITY, cityEdittext.getText().toString());
+            Toast.makeText(getActivity(), "Фильтр отправил интент", Toast.LENGTH_SHORT).show();
         }
         intent.putExtra(PARAM_FILTER_CHANGED, acceptButtonClicked);
         acceptButtonClicked = false;

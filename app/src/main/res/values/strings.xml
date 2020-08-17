@@ -38,4 +38,9 @@
     <string name="item_fragment_ogrn_textView">ОГРН</string>
     <string name="item_fragment_adress_textView">Адрес</string>
     <string name="item_fragment_add_request_button">Создать заявку на кредит</string>
+    <string name="request_list_adapter_mCount">Сумма: %d</string>
+    <string name="request_list_adapter_bPercent">Процент: %d%%</string>
+    <string name="request_list_adapter_requestNum">Заявка №</string>
+    <string name="request_list_adapter_requestState">Статус: </string>
+    <string name="request_list_adapter_monthlyPayment">Ежемесячный платеж:</string>
 </resources>

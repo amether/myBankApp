@@ -1,6 +1,5 @@
 package com.example.mybankapp.adapters;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mybankapp.R;
-import com.example.mybankapp.classes.RecyclerItem;
+import com.example.mybankapp.models.BankListRecyclerItem;
 
 import java.util.ArrayList;
 
@@ -21,14 +20,12 @@ import static com.example.mybankapp.constants.Constants.PARAM_BUNDLE_NAME;
 import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE;
 import static com.example.mybankapp.constants.Constants.PARAM_SWITCH_TYPE_ITEM_FRAGMENT;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class BankListAdapter extends RecyclerView.Adapter<BankListAdapter.ViewHolder> {
 
-    private ArrayList<RecyclerItem> itemList;
-    private static Context context;
+    private ArrayList<BankListRecyclerItem> itemList;
 
-    public RecyclerAdapter(java.util.ArrayList<RecyclerItem> itemList, Context mContext) {
+    public BankListAdapter(java.util.ArrayList<BankListRecyclerItem> itemList) {
         this.itemList = itemList;
-        this.context = mContext;
     }
 
     @NonNull
@@ -40,7 +37,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder itemView, int position) {
-        RecyclerItem itemLists = itemList.get(position);
+        BankListRecyclerItem itemLists = itemList.get(position);
         itemView.txtTitle.setText(itemLists.getTitle());
         itemView.imageView.setImageResource(itemLists.getImage());
     }
@@ -67,7 +64,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                     Intent intent = new Intent(PARAM_BROADCAST_NAME);
                     intent.putExtra(PARAM_SWITCH_TYPE, PARAM_SWITCH_TYPE_ITEM_FRAGMENT);
                     intent.putExtra(PARAM_BUNDLE_NAME, txtTitle.getText().toString());
-                    context.sendBroadcast(intent);
+                    txtTitle.getContext().sendBroadcast(intent);
                 }
             });
 
